@@ -121,6 +121,7 @@ namespace PSU2 {
 			this->textBox1->Click += gcnew System::EventHandler(this, &MyForm::textBox1_Click);
 			this->textBox1->TextChanged += gcnew System::EventHandler(this, &MyForm::textBox1_TextChanged);
 			this->textBox1->Enter += gcnew System::EventHandler(this, &MyForm::textBox1_Enter);
+			this->textBox1->Leave += gcnew System::EventHandler(this, &MyForm::textBox1_Leave);
 			// 
 			// textBox2
 			// 
@@ -130,6 +131,8 @@ namespace PSU2 {
 			this->textBox2->TabIndex = 4;
 			this->textBox2->Click += gcnew System::EventHandler(this, &MyForm::textBox2_Click);
 			this->textBox2->TextChanged += gcnew System::EventHandler(this, &MyForm::textBox2_TextChanged);
+			this->textBox2->Enter += gcnew System::EventHandler(this, &MyForm::textBox2_Enter);
+			this->textBox2->Leave += gcnew System::EventHandler(this, &MyForm::textBox2_Leave);
 			// 
 			// textBox3
 			// 
@@ -222,15 +225,15 @@ private: System::Void button1_Click(System::Object^ sender, System::EventArgs^ e
 		a = Convert::ToDouble(textBox1->Text);
 		x = Convert::ToDouble(textBox2->Text);
 		if (x <= 0)
-			y = pow(abs(x), 2 * x + 1);
+			y = abs(pow(sqrt(2*x+5/(pow(x,3)+2)), 3));
 		else if (x > 0 && x <= a) {
 
-			y = sin(pow(x, 2));
+			y = 5*x+pow(x,2)/(pow((pow(x,2)+3), 3));
 
 		}
 		else {
 
-			y = pow(log(x), 2) + sqrt(x);
+			y = pow(cos(pow(x, 3) + sqrt(x)), 2);
 
 		};
 		
@@ -245,6 +248,19 @@ private: System::Void button2_Click(System::Object^ sender, System::EventArgs^ e
 	Application::Exit();
 }
 private: System::Void textBox1_Click(System::Object^ sender, System::EventArgs^ e) {
+	
+}
+
+private: System::Void textBox2_Click(System::Object^ sender, System::EventArgs^ e) {
+	
+}
+private: System::Void textBox1_Enter(System::Object^ sender, System::EventArgs^ e) {
+	textBox3->Text = "";
+}
+private: System::Void button2_Enter(System::Object^ sender, System::EventArgs^ e) {
+	textBox3->Text = "";
+}
+private: System::Void textBox1_Leave(System::Object^ sender, System::EventArgs^ e) {
 	int l, t, k; bool a = true; String^ str; str = textBox1->Text;
 	l = str->Length;
 	t = 0;
@@ -260,19 +276,23 @@ private: System::Void textBox1_Click(System::Object^ sender, System::EventArgs^ 
 				a = false;
 			k++;
 
-		}		
+		}
+
 		else if (str[t] < '0' || str[t] > '9')
 			a = false;
+
 		t++;
 	}
 	if (a == false)
 	{
-		MessageBox::Show("параметр A не являеться числом", "Ошибка ввода данных", MessageBoxButtons::OK, MessageBoxIcon::Exclamation);
+		MessageBox::Show("Параматр A не являеться числом", "Ошибка ввода данных", MessageBoxButtons::OK, MessageBoxIcon::Exclamation);
 		this->textBox1->Focus();
 	}
 }
-
-private: System::Void textBox2_Click(System::Object^ sender, System::EventArgs^ e) {
+private: System::Void textBox2_Enter(System::Object^ sender, System::EventArgs^ e) {
+	textBox3->Text = "";
+}
+private: System::Void textBox2_Leave(System::Object^ sender, System::EventArgs^ e) {
 	int l, t, k; bool a = true; String^ str; str = textBox2->Text;
 	l = str->Length;
 	t = 0;
@@ -295,15 +315,9 @@ private: System::Void textBox2_Click(System::Object^ sender, System::EventArgs^ 
 	}
 	if (a == false)
 	{
-		MessageBox::Show("параметр X не являеться числом", "Ошибка ввода данных", MessageBoxButtons::OK, MessageBoxIcon::Exclamation);
+		MessageBox::Show("Параматр X не являеться числом", "Ошибка ввода данных", MessageBoxButtons::OK, MessageBoxIcon::Exclamation);
 		this->textBox2->Focus();
 	}
-}
-private: System::Void textBox1_Enter(System::Object^ sender, System::EventArgs^ e) {
-	textBox3->Text = "";
-}
-private: System::Void button2_Enter(System::Object^ sender, System::EventArgs^ e) {
-	textBox3->Text = "";
 }
 };
 }

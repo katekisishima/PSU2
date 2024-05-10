@@ -1,0 +1,3 @@
+D:\c++\PSU2\PSU2\x64\Debug\PSU2.vcxproj.AssemblyReference.cache
+D:\c++\PSU2\PSU2\x64\Debug\PSU2.MyForm.resources
+D:\c++\PSU2\PSU2\x64\Debug\PSU2.vcxproj.GenerateResource.cache
